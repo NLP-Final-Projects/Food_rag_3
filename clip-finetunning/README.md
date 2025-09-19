@@ -1,41 +1,39 @@
-# CLIP Fine-Tuning for Persian Food VQA
+# Project Overview: A Multimodal RAG System for Persian Cuisine
 
-This project contains the code to fine-tune a CLIP-based text encoder on a dataset of Persian food images and their corresponding descriptions. The goal is to create a model that can effectively embed both images and text into a shared representation space for retrieval tasks.
+The primary goal of this project was to develop an intelligent system capable of answering complex questions about Persian food using both text and images. This is a **multimodal** task because it requires the system to understand and reason over different types of data (modalities). To address this, we designed and implemented a sophisticated **Retrieval-Augmented Generation (RAG)** pipeline.
 
-## Project Structure
+### The Core Idea: An "Open-Book Exam" for AI
 
-- `config.py`: A centralized file for all configurations, including file paths, model names, and training hyperparameters.
-- `train.py`: The main entry point to start the data preparation and model fine-tuning process.
-- `src/`: Contains the core source code for the model and training logic.
-  - `dataset.py`: Defines the PyTorch `Dataset` for loading image-text pairs.
-  - `encoders.py`: Contains wrapper classes for the CLIP vision and text models.
-  - `trainer.py`: The main `FaCLIPTextTrainer` class that orchestrates the training loop.
-- `utils/`: Contains utility scripts, primarily for data processing.
-  - `data_prep.py`: Functions to process the raw JSON/image data and build the `docstore.parquet`.
+Standard AI models, even powerful ones, may lack deep, specialized knowledge on niche topics like regional Persian cuisine. A RAG system solves this problem by giving the AI an "open-book exam." Instead of relying solely on its internal memory, the system first performs a high-speed search through a dedicated knowledge base to find relevant information. This retrieved context is then provided to a powerful generator model, which uses it to formulate a highly accurate and contextually grounded answer.
 
-## How to Run
+### The Pipeline Explained
 
-1.  **Prepare Your Data**:
-    - Place your raw food dataset (the folders containing images and `.json` files) into a single directory.
+Our system is broken down into three main stages: Data Preparation, Retrieval, and Generation.
 
-2.  **Install Dependencies**:
-    ```bash
-    pip install torch pandas transformers faiss-cpu pillow tqdm
-    ```
+#### 1. Data Preparation: Building the Knowledge Base
 
-3.  **Configure the Project**:
-    - Open `config.py`.
-    - Set the `base_data_root` variable to the path of the directory from Step 1.
-    - (Optional) Adjust other hyperparameters like `epochs`, `batch_size`, etc., as needed.
+The foundation of any RAG system is a high-quality knowledge base. We began by gathering a large dataset consisting of images of Persian dishes and corresponding JSON files containing detailed descriptions, ingredients, and preparation methods. This raw data was carefully processed and cleaned to create a central "document store" (`docstore.parquet`). A critical step in this phase was **deduplication**, where identical passages were removed to ensure the knowledge base was clean and efficient.
 
-4.  **Run Training**:
-    - Execute the main training script from your terminal:
-    ```bash
-    python train.py
-    ```
-    - You can also override the settings from `config.py` using command-line arguments for quick experiments:
-    ```bash
-    python train.py --epochs 5 --learning_rate 2e-5 --output_dir "models/my_finetuned_clip"
-    ```
+#### 2. The Retrieval System: Finding the Right Information
 
-This process will first scan and process your raw data to create a `docstore.parquet` and a training CSV file in the `data/` directory. It will then proceed with fine-tuning the model. The final model, tokenizer, and the corresponding FAISS index will be saved to the directory specified by `output_dir` in your configuration.
+This is the core of the RAG architecture and is responsible for finding the most relevant documents for a given query. Because our system is multimodal, it has two distinct pathways for retrieval:
+
+* **Text Retrieval:** For text-only questions (e.g., "What are the ingredients in Ghorme Sabzi?"), we used a **Glot-500** sentence transformer, fine-tuned specifically to understand the nuances of Persian text.
+* **Image Retrieval:** For questions involving an image, we fine-tuned a **CLIP model**. CLIP is a powerful dual-encoder model designed to map both images and text into a shared "meaning space" (embedding space). By fine-tuning it on our Persian food dataset, we trained it to become an expert at recognizing a dish from an image and finding its corresponding textual description. When a user provides an image, the model converts it into a vector, which is then used to find the most similar text descriptions in our knowledge base.
+
+To make the search process nearly instantaneous, we used **FAISS** (Facebook AI Similarity Search) to create a highly optimized index of all the document vectors. This allows the system to search through thousands of documents in milliseconds.
+
+#### 3. The Generation System: Formulating the Answer
+
+Once the top-ranking documents are retrieved, their text is combined with the user's original question and passed to a powerful Large Multimodal Model (LMM), such as **Gemini Pro** or **LLaVA**. This LMM acts as the "reasoning brain" of the pipeline. It reads the retrieved context and the question, synthesizes the information, and generates a final, coherent, and accurate answer.
+
+#### 4. Evaluation
+
+To measure the effectiveness of our pipeline, we benchmarked it on a custom Visual Question Answering (VQA) dataset. We compared the performance of the full RAG system against a baseline where the LMM answered questions without any retrieved context. This allowed us to quantify the significant improvement in accuracy provided by the retrieval augmentation.
+
+### Final Outcome and Availability
+
+The result of this project is a complete, end-to-end multimodal RAG system capable of answering detailed questions about Persian cuisine. A key contribution is the fine-tuned CLIP model, which is specialized for understanding Persian food imagery. This model is now publicly available for others to use in their own projects and can be accessed on the Hugging Face Hub.
+
+**The final fine-tuned model is available at:**
+[https://huggingface.co/Arshiaizd/MCLIP_FA_FineTuned/tree/main](https://huggingface.co/Arshiaizd/MCLIP_FA_FineTuned/tree/main)
