@@ -39,4 +39,11 @@ The `train.py` script orchestrates the full fine-tuning pipeline:
     python train.py
     ```
 
+
 The script will first run the MLM pre-training phase (if enabled) and save the adapted model to `output_dir/mlm_finetuned`. It will then proceed with contrastive training, saving a checkpoint for each epoch in `output_dir/epoch_{n}`.
+
+
+**The final fine-tuned model is available at:**
+**The final fine-tuned model is available at:**
+[https://huggingface.co/Arshiaizd/MCLIP_FA_FineTuned/tree/main](https://huggingface.co/Arshiaizd/MCLIP_FA_FineTuned/tree/main)
+
