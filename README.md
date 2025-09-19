@@ -14,21 +14,7 @@ We present a Persian, food-domain retrieval-augmented generation (RAG) system th
 
 ## Methods Summary
 
-Our system is built on a Retrieval-Augmented Generation (RAG) architecture tailored for the Persian culinary domain. The core methodology can be summarized as follows:
-
-1.  **Shared Representation Learning**: We map both images and text passages into a single, shared vector space. This is achieved using two main encoders:
-    * A **CLIP-style vision tower** processes images.
-    * A **transformer-based text encoder** (Glot-500), fine-tuned on our culinary dataset, processes textual information.
-    Both encoders produce L2-normalized embeddings of the same dimension, allowing for direct comparison via cosine similarity.
-
-2.  **Retrieval and Evidence Pooling**: We use FAISS (`IndexFlatIP`) for efficient similarity searches.
-    * For **text-only queries**, the question is encoded and searched against an index of all text passages.
-    * For **image queries**, the image is encoded and searched against the same text passage index (image-to-text retrieval).
-    The top-k retrieved documents form an evidence pool that grounds the final answer.
-
-3.  **RAG Prompt Construction**: Short snippets from the retrieved documents are extracted and compiled into a compact evidence block. This block is injected directly into the prompt given to the generative model, providing it with relevant context to formulate an answer.
-
-4.  **Ingredient-Aware Training**: A key innovation in our approach is the use of **ingredient photos**. During training, images of a dish's main ingredients are treated as additional positive examples alongside the final plated dish. This encourages the model to create a more holistic, set-level concept of each dish, making the retriever more robust to queries that are based on raw ingredients.
+Our system is built on a Retrieval-Augmented Generation (RAG) architecture tailored for the Persian culinary domain. At its core is a shared representation learning module where both images and text passages are mapped into a unified vector space using a CLIP-style vision tower and a fine-tuned Glot-500 text encoder, respectively. For any given query, whether text or image-based, we leverage these embeddings to perform an efficient similarity search against a FAISS index of our entire culinary text corpus. The top-ranked documents are then pooled to form an evidence block, which is injected directly into the prompt for the generative model to produce a contextually grounded answer. A key innovation in our methodology is an ingredient-aware training strategy; by treating images of a dish's main ingredients as additional positive examples during fine-tuning, we encourage the model to develop a more holistic concept of each dish, thereby enhancing the retriever's robustness, especially for ingredient-based queries.
 
 ## Dataset Properties
 
@@ -48,4 +34,9 @@ We constructed a novel multimodal dataset of Iranian foods from scratch. The pro
 * **Corpus Size**: The final dataset contains **1,737 total entries**, covering **1,393 unique dishes**.
 
 * **Preprocessing Philosophy**: We deliberately avoided aggressive text preprocessing techniques like lemmatization or stemming. This decision was made to preserve the full linguistic richness of the text, ensuring that the RAG system has access to all potentially valuable information during retrieval.
-```eof
+
+
+## Evaluation and Results
+We evaluated our system on a custom set of 50 multiple-choice questions (30 text-only, 20 image-based). Our key finding was the differential impact of RAG on generators of varying strengths.
+
+
