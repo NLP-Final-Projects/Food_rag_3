@@ -13,9 +13,10 @@ It includes both **text-only data** and **image–text paired data**.
 │   └── passages_questions.json
 │
 ├── image_text/
-│   └── food_dataset.json
+│   ├── food_dataset.json
+│   ├── food_images/          # (only one sample folder included here)
+│   └── food_images_URL.txt   # Kaggle link for full image dataset
 │
-├── food_images_URL.txt
 └── README.md
 ```
 
