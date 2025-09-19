@@ -5,7 +5,7 @@
 
 **Mohammad Hossein Eslami,Arshia Izadyari,Sadegh Mohammadian,Fateme Asgari,Ali RahimiAkbar,Mohammad Mahdi Vahedi**
 
-![Results](https://github.com/NLP-Final-Projects/Food_rag_3/blob/main/assets/results.png)
+![Results](https://github.com/NLP-Final-Projects/Food_rag_3/blob/main/assets/abs.jpg)
 
 </div>
 
