@@ -5,9 +5,17 @@
 
 **Mohammad Hossein Eslami,Arshia Izadyari,Sadegh Mohammadian,Fateme Asgari,Ali RahimiAkbar,Mohammad Mahdi Vahedi**
 
+You can test an interactive demo of our model on Hugging Face Spaces at the following link:
+
+[https://huggingface.co/spaces/parsi-ai-nlpclass/Persian-Food-RAG](https://huggingface.co/spaces/parsi-ai-nlpclass/Persian-Food-RAG)
+
 ![Results](https://github.com/NLP-Final-Projects/Food_rag_3/blob/main/assets/abs.jpg)
 
+
+
 </div>
+
+
 
 ## Abstract
 
