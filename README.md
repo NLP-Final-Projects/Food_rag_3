@@ -38,5 +38,5 @@ We constructed a novel multimodal dataset of Iranian foods from scratch. The pro
 
 ## Evaluation and Results
 We evaluated our system on a custom set of 50 multiple-choice questions (30 text-only, 20 image-based). Our key finding was the differential impact of RAG on generators of varying strengths.
-
+![Results](https://github.com/NLP-Final-Projects/Food_rag_3/blob/main/assets/results.png)
 
