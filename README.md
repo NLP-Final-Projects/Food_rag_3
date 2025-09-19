@@ -5,6 +5,7 @@
 
 **Mohammad Hossein Eslami,Arshia Izadyari,Sadegh Mohammadian,Fateme Asgari,Ali RahimiAkbar,Mohammad Mahdi Vahedi**
 
+![Results](https://github.com/NLP-Final-Projects/Food_rag_3/blob/main/assets/results.png)
 
 </div>
 
@@ -38,5 +39,11 @@ We constructed a novel multimodal dataset of Iranian foods from scratch. The pro
 
 ## Evaluation and Results
 We evaluated our system on a custom set of 50 multiple-choice questions (30 text-only, 20 image-based). Our key finding was the differential impact of RAG on generators of varying strengths.
+
+<div align="center">
+   
 ![Results](https://github.com/NLP-Final-Projects/Food_rag_3/blob/main/assets/results.png)
+
+</div>
+
 
