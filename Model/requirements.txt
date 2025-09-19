@@ -1,0 +1,10 @@
+torch
+faiss-cpu
+pandas
+numpy
+pillow
+transformers
+sentence-transformers
+google-generativeai
+gradio
+pyarrow
