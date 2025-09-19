@@ -1,25 +1,17 @@
-# Persian Food RAG System
-
-![Food](https://github.com/NLP-Final-Projects/Food_rag_3/blob/main/assets/Tahchin.jpg)
-
-## Abstract
-
-We present a Persian, food-domain retrieval-augmented generation (RAG) system that combines a dual-modality retriever with a lightweight generator. Building on our prior corpus and an added Kaggle recipe collection (1,737 entries; 1,393 unique dishes), we expand the index with web-sourced photos of dishes \emph{and} systematically collected images of key ingredients to strengthen image-grounded queries. The retriever pairs a Persian text encoder (500glot) with a fine-tuned CLIP vision--text encoder (vision-fa-clip/SajjadAyoubi) trained with a multi-positive contrastive objective to handle multiple instructions per dish. Canonicalized Persian texts and cross-modal embeddings enable answering both text-only and image+text questions by retrieving pertinent evidence and conditioning the generator.
-
 
 <div align="center">
 
 # Persian Culinary RAG: Multimodal Retrieval and Generation for Text–Image Food Queries
 
-**Authors:** Sadegh Mohammadian | Arshia Izadyari | Mohammad Hossein Eslami
+**Authors:** Mohammad Hossein Eslami,Arshia Izadyari,Sadegh Mohammadian,
+Fateme Asgari,Ali RahimiAkbar,Mohammad Mahdi Vahedi
 
-Fateme Asgari | Ali Rahimi Akbar | Mohammad Mahdi Vahedi
 
 </div>
 
 ## Abstract
 
-We present a Persian, food-domain retrieval-augmented generation (RAG) system that combines a dual-modality retriever with a lightweight generator. Building on our prior corpus and an added Kaggle recipe collection (1,737 entries; 1,393 unique dishes), we expand the index with web-sourced photos of dishes *and* systematically collected images of key ingredients to strengthen image-grounded queries. The retriever pairs a Persian text encoder (Glot-500) with a fine-tuned CLIP vision–text encoder (vision-fa-clip/SajjadAyoubi) trained with a multi-positive contrastive objective to handle multiple instructions per dish. Cross-modal embeddings enable answering both text-only and image+text questions by retrieving pertinent evidence and conditioning the generator. On held-out multiple-choice sets, the RAG setup improves performance for ingredient-triggered and image-grounded queries with a lighter generator, while gains are mixed for a stronger generator.
+We present a Persian, food-domain retrieval-augmented generation (RAG) system that combines a dual-modality retriever with a lightweight generator. Building on our prior corpus and an added Kaggle recipe collection (1,737 entries; 1,393 unique dishes), we expand the index with web-sourced photos of dishes \emph{and} systematically collected images of key ingredients to strengthen image-grounded queries. The retriever pairs a Persian text encoder (500glot) with a fine-tuned CLIP vision--text encoder (vision-fa-clip/SajjadAyoubi) trained with a multi-positive contrastive objective to handle multiple instructions per dish. Canonicalized Persian texts and cross-modal embeddings enable answering both text-only and image+text questions by retrieving pertinent evidence and conditioning the generator.
 
 ## Methods Summary
 
